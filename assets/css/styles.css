@@ -3,6 +3,11 @@ body {
   font-size: 120%;
 }
 
+body {
+  font-family: Arial;
+  font-size: 120%;
+}
+
 a {
   color: #563d7c;
   text-decoration: none;
@@ -60,6 +65,10 @@ li:nth-child(odd) {
 
 .hide {
   display: none;
+}
+
+.visible {
+  display: block;
 }
 
 .start {
