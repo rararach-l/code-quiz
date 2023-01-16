@@ -1,12 +1,3 @@
-// Create a code quiz that contains the following requirements:
-// A start button that when clicked a timer starts and the first question appears.
-// Questions contain buttons for each answer.
-// When answer is clicked, the next question appears
-// If the answer clicked was incorrect then subtract time from the clock
-// The quiz should end when all questions are answered or the timer reaches 0.
-// When the game ends, it should display their score and give the user the ability to save their initials and their score
-
-
 var score = 0;
 var currentQuestion = question[0];
 var counter = 100;
@@ -70,7 +61,7 @@ function populateQuestion(question) {
         });
     } 
 
-    choicesContainer.appendChild(choicesList);
+    choicesContainer.appendChild(choicesList); // appending the choicesList element to the choicesContainer element
 }
 
 // a function to show the next question, which can be used regardless of whether the question is right or wrong
@@ -84,7 +75,8 @@ function nextQuestion() {
     }
 }
 
-// endgame function
+// When the game ends, it should display their score and give the user the ability to save their initials and their score
+
 function endGame() {
     questionsContainer.setAttribute('class', 'hide');
     endScreen.setAttribute('class', 'visible');
