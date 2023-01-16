@@ -43,13 +43,12 @@ startButton.addEventListener('click', function() {
     }, 1000);
 });
 
-
 function populateQuestion(question) {
     var questionTitle = question.title;
     var choices = question.choices;
     var answer = question.answer;
     choicesContainer.innerHTML = '';
-    questionTitle.textContent = questionTitle; // this should be questionTitle.textContent = question.title;
+    questionTitle.textContent = questionTitle; 
     var choicesList = document.createElement('ul');
 
     for (let i = 0; i < choices.length; i++) {
@@ -71,10 +70,8 @@ function populateQuestion(question) {
             }
         });
     }
-
     choicesContainer.appendChild(choicesList);
 }
-
 
 function nextQuestion() {
     currentQuestion++;
@@ -85,30 +82,19 @@ function nextQuestion() {
     }
 }
 
-
 function endGame() {
-    // hide questions container
     questionsContainer.setAttribute('class', 'hide');
-    // show endScreen container
     endScreen.setAttribute('class', 'visible');
-    // assign score to finalScore container
     finalScore.textContent = score;
-    // reset the timer 
     clearInterval(intervalId);
 }
 
-
 function saveHighscore(initial) {
-    // get the current highscores value from localstorage
     var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-    // push initial + score to the array
     highscores.push({initials: initial, score: score});
-    // order the array from highest score to lowest
     highscores.sort(function(a,b){return b.score - a.score});
-    // json stringify then save back to localstorage
     localStorage.setItem("highscores", JSON.stringify(highscores));
 }
-
 
 // Another click event listener for choices
 //    Check answer
