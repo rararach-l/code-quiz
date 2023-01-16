@@ -2,22 +2,25 @@
 const question = [
     {
         title: "This is a question",
-        choices: [
+        choices: 
+        [
             "A",
             "B",
             "C",
             "D"
         ],
-        answer: "A"
+        answer: 0
     },
     {
-    title: "What is the difference between let and var?", choices: [
+    title: "What is the difference between let and var?", 
+    choices: 
+    [
         "let is block-scoped while var is function-scoped", 
         "let is function-scoped while var is block-scoped", 
         "let is used for constants while var is used for variables", 
         "var is block-scoped while let is function-scoped"
     ],
-    answer: "let is function-scoped while var is block-scoped"
+    answer: 1
 },
 {
     title: "What is the difference between == and ===?",
@@ -27,16 +30,17 @@ const question = [
         "== checks if both are strings while === checks if both are numbers",
         "=== checks if both are true == checks both are false"
     ],
-    answer: "A"
+    answer: 0
 },
 {
     title: "How can you declare a variable in JavaScript?",
-    choices: [
-        "A. var x = 10;",
-        "B. let x = 10;",
-        "C. const x = 10;",
-        "D. All of the above"
+    choices: 
+    [
+        "var x = 10;",
+        "let x = 10;",
+        "const x = 10;",
+        "All of the above"
     ],
-    answer: "D"
+    answer: 3
 },
 ];

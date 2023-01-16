@@ -6,13 +6,10 @@
 // The quiz should end when all questions are answered or the timer reaches 0.
 // When the game ends, it should display their score and give the user the ability to save their initials and their score
 
-// Prepare the questions in question.js file
-// var questions = ...
-// var questions = questions[i];
+
 var score = 0;
-var currentQuestion = 0;
+var currentQuestion = question[0];
 var counter = 100;
-var timer;
 
 // Prepare all selector that we might need to point to the html element.
 var startButton = document.querySelector('#start-button');
@@ -25,9 +22,9 @@ var audio = new Audio('assets/sfx/correct.wav')
 var wrongAnswerAudio = new Audio('assets/sfx/incorrect.wav')
 var endScreen = document.querySelector('#end-screen');
 var finalScore = document.querySelector('#final-score');
+var submitButton = document.querySelector('#submit-button');
 
-// ....
-
+// start the quiz using the start button, this is linked to the start of the timer and the first question being shown
 startButton.addEventListener('click', function() {
     startScreen.setAttribute('class', 'hide');
     questionsContainer.setAttribute('class', 'visible');
@@ -43,65 +40,53 @@ startButton.addEventListener('click', function() {
     }, 1000);
 });
 
+// using the array in question.js, the question is shown/populated
 function populateQuestion(question) {
-    var questionTitle = question.title;
-    var choices = question.choices;
-    var answer = question.answer;
+    let questionTitle = question.title;
+    let choices = question.choices;
+    let answer = question.answer;
     choicesContainer.innerHTML = '';
-    questionTitle.textContent = questionTitle; 
-    var choicesList = document.createElement('ul');
+    let questionTitleEl = document.querySelector('#question-title');
+    questionTitleEl.textContent = questionTitle; 
+    let choicesList = document.createElement('ul');
 
     for (let i = 0; i < choices.length; i++) {
-        var questionTitle = document.createElement("ul")
-        var choice = document.createElement('li');
+        let choice = document.createElement('li');
         choice.textContent = choices[i];
         choicesList.appendChild(choice);
         choice.addEventListener('click', function() {
-            if (choice.textContent === answer.textContent) {
+            if (i === answer) {
                 audio.play();
                 score++;
                 nextQuestion();
             } else {
                 wrongAnswerAudio.play();
                 counter = counter - 10;
+                nextQuestion();
                 if (counter <= 0) {
                     endGame();
                 }
             }
         });
-    }
+    } 
+
     choicesContainer.appendChild(choicesList);
 }
 
+// a function to show the next question, which can be used regardless of whether the question is right or wrong
+
 function nextQuestion() {
     currentQuestion++;
-    if (currentQuestion < questions.length) {
-        populateQuestion(questions[currentQuestion]);
+    if (currentQuestion < question.length) {
+        populateQuestion(question[currentQuestion]);
     } else {
         endGame();
     }
 }
 
+// endgame function
 function endGame() {
     questionsContainer.setAttribute('class', 'hide');
     endScreen.setAttribute('class', 'visible');
     finalScore.textContent = score;
-    clearInterval(intervalId);
 }
-
-function saveHighscore(initial) {
-    var highscores = JSON.parse(localStorage.getItem("highscores")) || [];
-    highscores.push({initials: initial, score: score});
-    highscores.sort(function(a,b){return b.score - a.score});
-    localStorage.setItem("highscores", JSON.stringify(highscores));
-}
-
-// Another click event listener for choices
-//    Check answer
-//        if correct, add 1 to score, call nextQuestion()
-//        if wrong, remove 10 seconds from the interval, call nextQuestion()
-
-// Click event listener to submit button
-//    var initial = initialInput.value.trim()
-//    saveHighscore(initial)
-//    redirect to highscore page
