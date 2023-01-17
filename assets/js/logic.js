@@ -1,8 +1,11 @@
+// initating variables which count up/down
 var score = 0;
 var currentQuestion = question[0];
 var counter = 100;
 
-// Prepare all selector that we might need to point to the html element.
+console.log(counter)
+
+// selectors pointing to the correct HTML elements
 var startButton = document.querySelector('#start-button');
 var startScreen = document.querySelector('#start-screen');
 var timer = document.querySelector('.timer');
