@@ -45,7 +45,7 @@ function populateQuestion(question) {
     let choicesList = document.createElement('ul');
 
     for (let i = 0; i < choices.length; i++) {
-        let choice = document.createElement('li');
+        let choice = document.createElement('button');
         choice.textContent = choices[i];
         choicesList.appendChild(choice);
         choice.addEventListener('click', function() {
